@@ -1,0 +1,42 @@
+Security Solutions:
+
+1. Know the incoming data:
+ The first step in validating your data is knowing what data should come in. Instead of looping through $_POST, you can call each field.
+ 
+2. Checking the type of data and cleaning it up:
+ For String: 
+  if ( isset( $_POST[ ‘name’ ] ) )
+  $name = strip_tags( trim( $_POST[ ‘name’ ] ) );
+ 
+ For Integer:
+  is_int(), is_bool(), is_float(), is_numberic() or By 'Type Casting'
+ 
+  The casts allowed are: 
+  (int), (integer) - cast to integer
+  (bool), (boolean) - cast to boolean
+  (float), (double), (real) - cast to float
+  (string) - cast to string
+  (array) - cast to array
+  (object) - cast to object
+  (unset) - cast to NULL (PHP 5)
+ 
+ For Varchar:
+  if ( isset( $_POST[ ‘comment’ ] ) )
+  $comment = htmlentities ( trim ( $_POST[ ‘comment’ ] ) , ENT_NOQUOTES );
+
+3. Checking the length of variables:
+ if you have a table in your database with name as a comment, and it can only have 256 characters. If a user types 356 characters, then part of their post will be cut off. If you check length, you can let the user know that they need to shorten their comment.
+ if ( strlen( $_POST[ ‘comment’ ] ) <= 256 )
+ $comment = htmlentities ( trim ( $_POST[ ‘comment’ ] ) , ENT_NOQUOTES );
+ 
+4. Is the format correct from the user?
+ if ( preg_match( ‘/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/’, $_POST[ ’email’ ] ) )
+ $emailAddress = trim( $_POST[ ’email’ ] );
+ 
+ if ( preg_match( ‘/<ENTER EXPRESSION HERE>/’, <INSERT VARIABLE HERE> ) )
+ 
+ =>obtain the ASCII value of a character: ord( )
+ 
+ PHP interfaces to a number of relational databases such as MySQL, Oracle and Sybase but the interface differs in each case.
+ 
+=>Rasmus Lerdorf = father of php
